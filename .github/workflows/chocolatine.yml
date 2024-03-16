@@ -1,19 +1,26 @@
   name: Chocolatine
 
+#on change pas ici on lui dit ce qu'ils doit ignorer
+#en gros si on met cette commande il bypass les test
+
   on :
     push:
       branches-ignore:
         - "ga-ignore- *"
 
+#il dois trouver les fichier binaires
+
   env:
     EXECUTABLES: "binary-file"
+
+#c'est quoi ton taff ?
 
   jobs:
     checking_coding_style:
       runs-on: ubuntu-latest
       container:
-        image: ghcr.io/epitech/coding-style-checker:latest
-      steps:
+        image: ghcr.io/epitech/coding-style-checker:latest #il va chopper l'immage du docker de la norme
+      steps: #il fait ces test
         - name: Checkout
           uses: actions/checkout@v4
         - name: Coding Style checker
@@ -31,19 +38,19 @@
               exit 1
             fi
 
-    check_program_compilation:
+    check_program_compilation: #il regarde si le programe compile bien, finit les build error
       runs-on: ubuntu-latest
       container:
         image: epitechcontent/epitest-docker:latest
       steps:
         - name: Checkout
           uses: actions/checkout@v4
-        - name: Compile the program
+        - name: Compile
           run: make
-          timeout-minutes: 2
-        - name: Clean the useless files
+          timeout-minutes: 3
+        - name: Clean useless files
           run: make clean
-        - name: Check each executables
+        - name: Check exe
           run: |
             IFS=','
             for value in $EXECUTABLES; do
@@ -65,3 +72,17 @@
         - name: Run unit tests
           run: make tests_run
           timeout-minutes: 2
+
+    push_to_mirror:
+      needs: run_tests
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
+        - uses: pixta-dev/repository-mirroring-action@v1
+          with:
+            target_repo_url:
+              git@github.com:EpitechPromo2028/B-DOP-200-LYN-2-1-chocolatine-alexis.drago-beltran.git #repo sur lequel on va envoyer le taff
+            ssh_private_key:
+              ${{ secrets.SSH_KEYGEN }} #clé ssh pour push sur le repo tek
