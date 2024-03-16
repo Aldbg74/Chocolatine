@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2024
-** B-DOP-200-LYN-2-1-chocolatine-alexis.drago-beltran
+** Chocolatine
 ** File description:
 ** test_the_coding_style.c
 */

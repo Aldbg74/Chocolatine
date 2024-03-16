@@ -1,9 +1,8 @@
 ##
-## Gertrude v.1
-##
-## This Makefile was generated using Gertrude
-##
-## (Gertrude is an open-source Makefile creation tool)
+## EPITECH PROJECT, 2024
+## Chocolatine
+## File description:
+## Makefile
 ##
 
 SRC	=	$(wildcard *.c)	\
