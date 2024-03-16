@@ -11,7 +11,7 @@
 #il dois trouver les fichier binaires
 
   env:
-    EXECUTABLES: "binary-file"
+    EXECUTABLES: "test"
 
 #c'est quoi ton taff ?
 
