@@ -9,6 +9,5 @@
 
 int main(void)
 {
-    write(1, "j'ai mangé un kiwi, et maintenant j'ai un petit zizi", 53);
     return 0;
 }
