@@ -80,8 +80,8 @@
         - uses: actions/checkout@v4
           with:
             fetch-depth: 0
-        - uses: pixta-dev/repository-mirroring-action@v1
-          with:
+        ##- uses: pixta-dev/repository-mirroring-action@v1
+          ##with:
             ssh_private_key:
               $${{ secrets.SSH_KEYGEN }} #clé ssh pour push sur le repo tek
             target_repo_url:
