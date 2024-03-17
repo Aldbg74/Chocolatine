@@ -85,4 +85,4 @@
             ssh_private_key:
               $${{ secrets.SSH_KEYGEN }} #clé ssh pour push sur le repo tek
             target_repo_url:
-              https://github.com/EpitechPromo2028/B-DOP-200-LYN-2-1-chocolatine-alexis.drago-beltran.git
+                $${{ secrets.TARGET_REPO_URL }} #url du repo tek
