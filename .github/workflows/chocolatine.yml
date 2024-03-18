@@ -75,7 +75,7 @@
 
     push_to_mirror:
       ##needs: run_tests
-      - runs-on: arch-latest
+      - runs-on: ubuntu-latest
         steps:
       - name: Mirroring Repository
         uses: pixta-dev/repository-mirroring-action@v1.1.1
