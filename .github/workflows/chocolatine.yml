@@ -1,19 +1,12 @@
   name: Chocolatine
 
-#on change pas ici on lui dit ce qu'ils doit ignorer
-#en gros si on met cette commande il bypass les test
-
   on :
     push:
       branches-ignore:
         - "ga-ignore- *"
 
-#il dois trouver les fichier binaires
-
   env:
     EXECUTABLES: "test"
-
-#c'est quoi ton taff ?
 
   jobs:
     checking_coding_style:
@@ -61,25 +54,13 @@
               fi
             done
 
-    ##run_tests:
-      ##needs: check_program_compilation
-      ##runs-on: ubuntu-latest
-      ##container:
-        ##image: epitechcontent/epitest-docker
-      ##steps:
-        ##- name: Checkout
-         ## uses: actions/checkout@v4
-        ##- name: Run unit tests
-         ## run: make tests_run
-         ## timeout-minutes: 2
-
     push_to_mirror:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v4
           with:
             fetch-depth: 0
-        - uses: pixta-dev/repository-mirroring-action@v1
+        - uses: pixta-dev/repository-mirroring-action@v1.1.1
           with:
             ssh_private_key: ${{ secrets.SSH_KEYGEN }}
             target_repo_url: git@github.com:EpitechPromo2028/B-DOP-200-LYN-2-1-chocolatine-alexis.drago-beltran.git
