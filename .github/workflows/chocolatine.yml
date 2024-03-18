@@ -47,7 +47,7 @@
           uses: actions/checkout@v4
         - name: Compile
           run: make
-          timeout-minutes: 3
+          timeout-minutes: 2
         - name: Clean useless files
           run: make clean
         - name: Check exe

@@ -10,6 +10,7 @@
 /* is it working ? */
 /* I don't know */
 /* I don't know */
+/*GROKAKA*/
 
 
 int main(void)
