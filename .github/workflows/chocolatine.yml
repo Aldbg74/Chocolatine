@@ -76,8 +76,8 @@
     push_to_mirror:
       runs-on: ubuntu-latest
       steps:
-        - uses : actions/checkout@v4
+        - uses: actions/checkout@v4
         - uses: pixta-dev/repository-mirroring-action@v1.1.1
           with:
             ssh_private_key: ${{ secrets.SSH_KEYGEN }}
-            target_repo_url: ${{ secrets.TARGET_REPO_URL }}
+            target_repo_url: git@github.com:EpitechPromo2028/B-DOP-200-LYN-2-1-chocolatine-alexis.drago-beltran.git
