@@ -14,7 +14,9 @@
 /*GROKAKA*/
 
 
-int main(void)
-{
+int main(void) {
+    /*kk*/
     return 0;
+    int i =0;
+
 }
