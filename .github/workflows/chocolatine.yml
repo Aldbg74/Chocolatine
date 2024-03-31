@@ -56,6 +56,17 @@
 
     do_unite_test:
       runs-on: ubuntu-latest
+      container:
+        image: epitechcontent/epitest-docker:latest
+        timeout-minutes: 2
+        needs: check_program_compilation
+        steps:
+          - name: Checkout GH repository
+            uses: actions/checkout@v4
+            with:
+              repository: ''
+          - name: Compile tests binaries
+            run: make unit_tests
 
     push_to_mirror:
       runs-on: ubuntu-latest
