@@ -7,12 +7,7 @@
 
 #include <unistd.h>
 
-/* HOLA QUETAN */
-/* is it working ? */
-/* I don't know */
-/* I don't know */
-/*GROKAKA*/
-
+/*ke du front*/
 
 int main(void) {
     return 0;
