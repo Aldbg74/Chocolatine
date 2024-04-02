@@ -7,9 +7,6 @@
 
 #include <unistd.h>
 
-/*ke du front*/
-/*KAKA*/
-
 int main(void)
 {
     return 0;
