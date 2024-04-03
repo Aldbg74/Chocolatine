@@ -5,7 +5,7 @@
 ** test_the_coding_style.c
 */
 
-#include <unistd.h>
+/*KK POWER*/
 
 int main(void)
 {
