@@ -6,6 +6,7 @@
 */
 
 /*KK POWER*/
+/*Nic*/
 
 int main(void)
 {
