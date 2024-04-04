@@ -65,7 +65,7 @@
             fetch-depth: 0
         - uses: pixta-dev/repository-mirroring-action@v1.1.1 #verifier si tout est ok pour le miror c ce qui pose pb rn
           with:
-            target_repo_url: ssh://git@github.com:EpitechPromo2028/B-DOP-200-LYN-2-1-chocolatine-alexis.drago-beltran.git
+            target_repo_url: git@github.com:EpitechPromo2028/B-DOP-200-LYN-2-1-chocolatine-alexis.drago-beltran.git
             ssh_private_key: ${{ secrets.GIT_SSH_PRIVATE_KEY }} #clef ssh pour le repo epitech
 
             # TODO :
