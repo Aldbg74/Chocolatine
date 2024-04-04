@@ -6,6 +6,7 @@
 */
 
 /*kk*/
+/*kk*/
 
 int main(void)
 {
