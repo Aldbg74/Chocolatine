@@ -3,21 +3,21 @@
   on :
     push:
       branches-ignore:
-        - "ga-ignore- *"
+        - "ga-ignore- *" #on ignore et on force push si la commande est présente
 
   env:
-    EXECUTABLES:
+    EXECUTABLES: #a vérifier mais il y a un monde ou je dois mettre un truc la et c'est ce qui fout la merde
 
   jobs:
     checking_coding_style:
-      runs-on: ubuntu-latest
+      runs-on: ubuntu-latest #a voir si je peut tester sur une distro arch pour avoir un truc accurate
       container:
         image: ghcr.io/epitech/coding-style-checker:latest
       steps:
         - name: Checkout
-          uses: actions/checkout@v4
+          uses: actions/checkout@v4 #vérif version
         - name: Coding Style checker
-          run: |
+          run: | #voir si possible de réduire c moche
             check.sh $(pwd) $(pwd)
             while read Line; \
             do \
@@ -33,14 +33,15 @@
 
     check_program_compilation:
       runs-on: ubuntu-latest
+      needs: checking_coding_style #lance pas le check compilation si le projet est pas cds freindly
       container:
         image: epitechcontent/epitest-docker:latest
       steps:
         - name: Checkout
-          uses: actions/checkout@v4
-        - name: Compile
+          uses: actions/checkout@v4 #vérif version
+        - name: Is Make Woking #previous Compile
           run: make
-          timeout-minutes: 2
+          timeout-minutes: 1 #on baisse un 1 ct 2 avant on va voir si sa merde et si on peut gangner du temps d'execution
         - name: Clean useless files
           run: make clean
         - name: Check exe
@@ -54,15 +55,24 @@
               fi
             done
 
+    #check unit test
+
     push_to_mirror:
         runs-on: ubuntu-latest
-        needs: check_program_compilation
-        if: github.event_name == 'push'
+        needs: check_program_compilation #pas de push si pas de compilation
+        #if: github.event_name == 'push'
         steps:
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v4 #again version a vérifier
           with:
             fetch-depth: 0
-        - uses: pixta-dev/repository-mirroring-action@v1.1.1
+        - uses: pixta-dev/repository-mirroring-action@v1.1.1 #verifier si tout est ok pour le miror c ce qui pose pb rn
           with:
-            target_repo_url: ${{ env.TARGET_REPO_URL }}
-            ssh_private_key: ${{ secrets.GIT_SSH_PRIVATE_KEY }}
+            target_repo_url: git@github.com:EpitechPromo2028/B-DOP-200-LYN-2-1-chocolatine-alexis.drago-beltran.git
+            ssh_private_key: ${{ secrets.GIT_SSH_PRIVATE_KEY }} #clef ssh pour le repo epitech
+
+            # TODO :
+            # Verifier au follow up le pourquoi du comment le miror ne se fait pas
+            # voir si autre probléme
+            # Voir avec Marin pour faire un truc pour les forbiden functions
+            # Voir aussi pour les test unitaires, il serait temps d'en faire
+            # Avoir commande pour si test dans branche pouvoir pull request/merge la branche si tout ok ?
