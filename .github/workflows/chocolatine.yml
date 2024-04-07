@@ -20,6 +20,7 @@
           run: | #voir si possible de réduire c moche
             while IFS=':' read -r ARG1 ARG2 ARG3 ARG4 _; do
             echo "::error file=$ARG1, line=$ARG2:: $ARG3 $ARG4"
+            done
             if [[ -s coding-style-reports.log ]]; then
             exit 1
             fi
