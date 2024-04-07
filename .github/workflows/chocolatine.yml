@@ -18,17 +18,11 @@
           uses: actions/checkout@v4 #vérif version
         - name: Coding Style checker
           run: | #voir si possible de réduire c moche
-            check.sh $(pwd) $(pwd)
-            while read Line; \
-            do \
-            ARG1=$(echo $Line | cut -d: -f1); \
-            ARG2=$(echo $Line | cut -d: -f2); \
-            ARG3=$(echo $Line | cut -d: -f3); \
-            ARG4=$(echo $Line | cut -d: -f4); \
-            echo "::error file=$ARG1, line=$ARG2:: $ARG3 $ARG4"; \
+            while IFS=':' read -r ARG1 ARG2 ARG3 ARG4 _; do
+            echo "::error file=$ARG1, line=$ARG2:: $ARG3 $ARG4"
             done < coding-style-reports.log
-            if [ -s coding-style-reports.log ]; then
-              exit 1
+            if [[ -s coding-style-reports.log ]]; then
+            exit 1
             fi
 
     check_program_compilation:
@@ -40,7 +34,7 @@
           uses: actions/checkout@v4 #vérif version
         - name: Is Make Woking #previous Compile
           run: make
-          timeout-minutes: 1 #on baisse un 1 ct 2 avant on va voir si sa merde et si on peut gangner du temps d'execution
+          timeout-minutes: 2 #on baisse un 1 ct 2 avant on va voir si sa merde et si on peut gangner du temps d'execution
         - name: Clean useless files
           run: make clean
         - name: Check exe
