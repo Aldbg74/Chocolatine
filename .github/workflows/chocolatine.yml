@@ -40,7 +40,7 @@
         - name: Check exe
           run: |
             IFS=','
-            for value in $EXECUTABLES; do
+            for value in $EXECUTABLES;
               if [ -e $value ]; then
                 exit 0
               else
