@@ -5,6 +5,8 @@
 ** test_the_coding_style.c
 */
 
+/*test*/
+
 int main(void)
 {
     return 0;
