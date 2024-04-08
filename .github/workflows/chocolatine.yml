@@ -39,11 +39,9 @@
           run: make clean
         - name: Check exe
           run: |
-            IFS=','
-            for value in $EXECUTABLES;
-              if [ -e $value ]; then
-                exit 0
-              else
+            while IFS= read -r line; do
+              if [ ! -x "$line" ]; then
+                echo "::error ::$line is not executable"
                 exit 1
               fi
             done
