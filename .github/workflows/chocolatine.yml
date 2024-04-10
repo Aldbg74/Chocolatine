@@ -37,7 +37,6 @@
       runs-on: ubuntu-latest
       container:
         image: epitechcontent/epitest-docker:latest
-      depends-on: checking_coding_style
       steps:
         - name: Checkout
           uses: actions/checkout@v4 #vérif version
@@ -59,7 +58,6 @@
 
     push_to_mirror:
         runs-on: ubuntu-latest
-        depends-on: checking_coding_style
         #if: github.event_name == 'push'
         steps:
         - uses: actions/checkout@v4 #again version a vérifier
