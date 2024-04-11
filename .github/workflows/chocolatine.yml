@@ -15,11 +15,11 @@
         image: ghcr.io/epitech/coding-style-checker:latest
       steps:
         - name: Checkout
-          uses: actions/checkout@v4 #vérif version
+          uses: actions/checkout@v4
         - name: Coding Style checker
-          run: | #voir si possible de réduire c moche
+          run: |
               check.sh $(pwd) $(pwd)
-            awk -F: '$1 !~ /Makefile/ {print "::error file="$1", line="$2":: "$3" "$4}' coding-style-reports.log || exit 1
+            awk -F: '$1 !~ {print "::error file="$1", line="$2":: "$3" "$4}' coding-style-reports.log || exit 1
 
     check_program_compilation:
       runs-on: ubuntu-latest
