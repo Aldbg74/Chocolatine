@@ -11,7 +11,7 @@ OBJ	=	$(SRC:.c=.o)
 
 CC	=	gcc
 
-EXEC	=	test
+EXEC	=	illegal
 
 CFLAGS	+=	-Wall -g3
 

@@ -6,7 +6,7 @@
         - "ga-ignore- *"
 
   env:
-    EXECUTABLES:
+    EXECUTABLES: "illegal"
 
   jobs:
     checking_coding_style:
