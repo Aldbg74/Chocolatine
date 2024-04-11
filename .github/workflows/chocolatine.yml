@@ -19,19 +19,7 @@
         - name: Coding Style checker
           run: | #voir si possible de réduire c moche
               check.sh $(pwd) $(pwd)
-              while read Line; \
-              do \
-              ARG1=$(echo $Line | cut -d: -f1); \
-              ARG2=$(echo $Line | cut -d: -f2); \
-              ARG3=$(echo $Line | cut -d: -f3); \
-              ARG4=$(echo $Line | cut -d: -f4); \
-              if [[ $ARG1 != *Makefile* ]]; then \
-                echo "::error file=$ARG1, line=$ARG2:: $ARG3 $ARG4"; \
-              fi \
-              done < coding-style-reports.log
-              if [ -s coding-style-reports.log ]; then
-                exit 1
-              fi
+            awk -F: '$1 !~ /Makefile/ {print "::error file="$1", line="$2":: "$3" "$4}' coding-style-reports.log || exit 1
 
     check_program_compilation:
       runs-on: ubuntu-latest
