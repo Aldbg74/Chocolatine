@@ -19,8 +19,8 @@
         - name: Coding Style checker
           run: |
               check.sh $(pwd) $(pwd) && awk -F: '$1 !~ /Makefile/ {print "::error file="$1", line="$2":: "$3" "$4}' coding-style-reports.log
-              if [ -s $input ]; then
-                 exit 1
+                if [ -s $input ]; then
+                  exit 1
               fi
             
 
