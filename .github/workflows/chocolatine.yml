@@ -40,9 +40,10 @@
           run: make clean
         - name: Check exe
           run: |
-            while IFS= read -r line; do
-              if [ ! -x "$line" ]; then
-                echo "::error ::$line is not executable"
+            IFS=',' read -ra executables <<< ${{ env.EXECUTABLES }}
+            for Executable in "${executables[@]}"; do
+              if [ ! -x "$Executable" ]; then
+                echo "Executable $Executable does not exist or is not executable"
                 exit 1
               fi
             done
