@@ -18,8 +18,8 @@
           uses: actions/checkout@v4
         - name: Coding Style checker
           run: |
-              check.sh $(pwd) $(pwd)
-            awk -F: '$1 !~ {print "::error file="$1", line="$2":: "$3" "$4}' coding-style-reports.log || exit 1
+            run: |
+              check.sh $(pwd) $(pwd) && awk -F: '$1 !~ /Makefile/ {print "::error file="$1", line="$2":: "$3" "$4}' coding-style-reports.log || exit 1
 
     check_program_compilation:
       runs-on: ubuntu-latest
